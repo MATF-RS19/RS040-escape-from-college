@@ -22,6 +22,6 @@ ESC - to close
 #### TEAM:
 
 [Jovana Pavlovic](https://github.com/PavlovicJovana)  
-[Marko Bekonja](https://github.com/MarkoBekonja)
-[Luka Kumburovic](https://github.com/SpotRZ)     
+[Marko Bekonja](https://github.com/MarkoBekonja)   
+[Luka Kumburovic](https://github.com/SpotRZ)       
 [Aleksandra Divljakovic](https://github.com/Jagoda07)
