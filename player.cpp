@@ -14,7 +14,6 @@
 #include <QDebug>
 
 extern Game * game;
-//extern Player * player;
 extern Tips * tips;
 extern Score * score;
 extern Meni * pocetak;
@@ -58,7 +57,7 @@ void Player::keyPressEvent(QKeyEvent *event){
         if( collide() == 1 )
             setPos( x(), y() - 3 );
         else
-        tips->setText("Everything here is made-up!");
+            tips->setText("Everything here is made-up!");
 
     }
     else if( event->key() == Qt::Key_A ){
@@ -72,7 +71,7 @@ void Player::keyPressEvent(QKeyEvent *event){
         if( collide() == 1 )
             setPos( x() + 3, y() );
         else
-        tips->setText("Everything here is made-up!");
+            tips->setText("Everything here is made-up!");
 
     }
     else if( event->key() == Qt::Key_D ){
@@ -86,7 +85,7 @@ void Player::keyPressEvent(QKeyEvent *event){
         if( collide() == 1 )
             setPos( x() - 3, y() );
         else
-        tips->setText("Everything here is made-up!");
+            tips->setText("Everything here is made-up!");
     }
     else if( event->key() == Qt::Key_Space ){
         if( collide() == 3 ){
@@ -129,7 +128,6 @@ int Player::collide(){
             }
             else
                 return 3;
-
         }
         // --------------------------------------------------------------------------
 
@@ -149,7 +147,6 @@ int Player::collide(){
                 tips->setText("Doors seem to be locked");
                 return 1;
             }
-
         }
         // --------------------------------------------------------------------------
 
@@ -217,22 +214,8 @@ int Player::collide(){
                 setKey(true);
         }
         // --------------------------------------------------------------------------
-
     }// END OF for
 
     return 2;
 
 }// END OF collide
-
-
-
-
-
-
-
-
-
-
-
-
-
