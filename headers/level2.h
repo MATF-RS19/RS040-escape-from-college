@@ -2,6 +2,7 @@
 #define LEVEL2_H
 
 #include <QGraphicsScene>
+#include <QGraphicsPixmapItem>
 #include "door.h"
 #include "wall.h"
 #include "stairs.h"
@@ -13,6 +14,7 @@ class Level2 : public QGraphicsScene{
 public:
     Level2();
     Door* createDoors(qreal x,qreal y, qreal w, qreal h, bool lock);
+    void clearScene();
 
     Wall *wall1, *wall2, *wall3, *wall4, *wall5;
 
@@ -24,6 +26,8 @@ public:
     ExamPaper *paper1, *paper2, *paper3;
 
     Profesor *profesor1, *profesor2;
+
+    QGraphicsPixmapItem * background;
 
 
 }; // END OF class

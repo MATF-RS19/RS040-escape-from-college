@@ -1,20 +1,21 @@
 <RCC>
     <qresource prefix="/images">
-        <file>1st.jpg</file>
-        <file>2nd.jpg</file>
-        <file>script.png</file>
-        <file>femaleDown.png</file>
-        <file>femaleLeft.png</file>
-        <file>femaleRight.png</file>
-        <file>femaleUp.png</file>
-        <file>maleDown.png</file>
-        <file>maleRight.png</file>
-        <file>maleUp.png</file>
-        <file>maleLeft.png</file>
-        <file>profDown.png</file>
-        <file>profLeft.png</file>
-        <file>profRight.png</file>
-        <file>profUp.png</file>
-        <file>menuBackground.jpg</file>
+        <file>images/1st.jpg</file>
+        <file>images/2nd.jpg</file>
+        <file>images/3rd.jpg</file>
+        <file>images/femaleDown.png</file>
+        <file>images/femaleLeft.png</file>
+        <file>images/femaleRight.png</file>
+        <file>images/femaleUp.png</file>
+        <file>images/maleDown.png</file>
+        <file>images/maleLeft.png</file>
+        <file>images/maleRight.png</file>
+        <file>images/maleUp.png</file>
+        <file>images/menuBackground.jpg</file>
+        <file>images/profDown.png</file>
+        <file>images/profLeft.png</file>
+        <file>images/profRight.png</file>
+        <file>images/profUp.png</file>
+        <file>images/script.png</file>
     </qresource>
 </RCC>

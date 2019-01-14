@@ -1,4 +1,4 @@
-#include "door.h"
+#include "headers/door.h"
 
 Door::Door(QGraphicsItem *parent): QGraphicsRectItem(parent){
     unlockable = false;

@@ -1,4 +1,4 @@
-#include "tips.h"
+#include "headers/tips.h"
 #include <QFont>
 
 Tips::Tips(QString text, QGraphicsItem *parent): QGraphicsTextItem(parent){

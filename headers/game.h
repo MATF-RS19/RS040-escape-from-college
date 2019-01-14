@@ -7,6 +7,7 @@
 #include "door.h"
 #include "level1.h"
 #include "level2.h"
+#include "level3.h"
 
 class Game : public QGraphicsView {
 
@@ -16,7 +17,7 @@ public:
 
     Level1 *level1;
     Level2 *level2;
-    //Level3 *level3;
+    Level3 *level3;
 
     int index; // level counter
 };

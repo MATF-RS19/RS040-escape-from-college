@@ -1,6 +1,6 @@
-#include "meni.h"
-#include "game.h"
-#include "customize.h"
+#include "headers/meni.h"
+#include "headers/game.h"
+#include "headers/customize.h"
 #include <QLabel>
 #include <QHBoxLayout>
 #include <QVBoxLayout>
@@ -19,7 +19,7 @@ Meni::Meni(){
 
     // Background stuff -------------------------------------------------------------
     QGraphicsPixmapItem * background = new QGraphicsPixmapItem();
-    background->setPixmap(QPixmap(":/images/menuBackground.jpg"));
+    background->setPixmap(QPixmap(":/images/images/menuBackground.jpg"));
     background->setPos(0,0);
     scene->addItem(background);
     // ------------------------------------------------------------------------------

@@ -1,9 +1,9 @@
-#include "profesor.h"
+#include "headers/profesor.h"
 #include <QTimer>
 #include <QGraphicsScene>
 #include <QList>
-#include "player.h"
-#include "tips.h"
+#include "headers/player.h"
+#include "headers/tips.h"
 #include <QGraphicsItem>
 
 
@@ -12,8 +12,9 @@ extern Tips * tips;
 
 Profesor::Profesor(QString debljina,QString name,int iks,int ip,int iks1,int ip1, QGraphicsItem * parent):ime_prezime(name),X(iks),Y(ip),X1(iks1),Y1(ip1), QGraphicsPixmapItem(parent){
 
+    finishGame = false;
     setPos(iks,ip);
-    setScale(1.5);
+    setScale(1.7);
     QTimer *timer= new QTimer();
 
     connect(timer,SIGNAL(timeout()),this,SLOT(move()));
@@ -27,7 +28,7 @@ Profesor::Profesor(QString debljina,QString name,int iks,int ip,int iks1,int ip1
 void Profesor::keyPressEvent(QKeyEvent *event){
 
     if( event->key() == Qt::Key_Escape ){
-        if( collide() == true )
+        if( collide() == true || finishGame == true)
             exit(0);
         }
 
@@ -45,21 +46,21 @@ void Profesor::move(){
         if (idemDesno){
 
             if (pos().x() <= X1-2){
-                setPixmap(QPixmap(":/images/profRight.png"));
+                setPixmap(QPixmap(":/images/images/profRight.png"));
                 setPos(x()+2,y());
             }else{
                 idemDesno= false;
-                setPixmap(QPixmap(":/images/profLeft.png"));
+                setPixmap(QPixmap(":/images/images/profLeft.png"));
                 setPos(x()-2,y());
             }
          }
          if (!idemDesno){
             if(pos().x() >= X+2){
-                setPixmap(QPixmap(":/images/profLeft.png"));
+                setPixmap(QPixmap(":/images/images/profLeft.png"));
                 setPos(x()-2,y());
             }else{
                 idemDesno=true;
-                setPixmap(QPixmap(":/images/profRight.png"));
+                setPixmap(QPixmap(":/images/images/profRight.png"));
                 setPos(x()+2,y());
             }
         }
@@ -67,21 +68,21 @@ void Profesor::move(){
 
         if(idemDole){
             if(pos().y() <=Y1-2){
-                setPixmap(QPixmap(":/images/profDown.png"));
+                setPixmap(QPixmap(":/images/images/profDown.png"));
                 setPos(x(),y()+2);
             }else{
                 idemDole=false;
-                setPixmap(QPixmap(":/images/profUp.png"));
+                setPixmap(QPixmap(":/images/images/profUp.png"));
                 setPos(x(),y()-2);
             }
         }
         if(!idemDole){
             if(pos().y() >=Y+2){
-                setPixmap(QPixmap(":/images/profUp.png"));
+                setPixmap(QPixmap(":/images/images/profUp.png"));
                 setPos(x(),y()-2);
             }else{
                 idemDole=true;
-                setPixmap(QPixmap(":/images/profDown.png"));
+                setPixmap(QPixmap(":/images/images/profDown.png"));
                 setPos(x(),y()+2);
             }
 

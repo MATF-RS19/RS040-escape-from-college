@@ -24,35 +24,37 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 
 SOURCES += \
-        main.cpp \
-    game.cpp \
-    wall.cpp \
-    door.cpp \
-    player.cpp \
-    exampaper.cpp \
-    tips.cpp \
-    score.cpp \
-    stairs.cpp \
-    profesor.cpp \
-    level1.cpp \
-    level2.cpp \
-    customize.cpp \
-    meni.cpp
+        sources/main.cpp \
+    sources/game.cpp \
+    sources/wall.cpp \
+    sources/door.cpp \
+    sources/player.cpp \
+    sources/exampaper.cpp \
+    sources/tips.cpp \
+    sources/score.cpp \
+    sources/stairs.cpp \
+    sources/profesor.cpp \
+    sources/level1.cpp \
+    sources/level2.cpp \
+    sources/customize.cpp \
+    sources/meni.cpp \
+    sources/level3.cpp
 
 HEADERS += \
-    game.h \
-    wall.h \
-    door.h \
-    player.h \
-    exampaper.h \
-    tips.h \
-    score.h \
-    stairs.h \
-    profesor.h \
-    level1.h \
-    level2.h \
-    customize.h \
-    meni.h
+    headers/customize.h \
+    headers/door.h \
+    headers/exampaper.h \
+    headers/game.h \
+    headers/level1.h \
+    headers/level2.h \
+    headers/meni.h \
+    headers/player.h \
+    headers/profesor.h \
+    headers/score.h \
+    headers/stairs.h \
+    headers/tips.h \
+    headers/wall.h \
+    headers/level3.h
 
 FORMS +=
 

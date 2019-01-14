@@ -1,4 +1,4 @@
-#include "stairs.h"
+#include "headers/stairs.h"
 
 
 Stairs::Stairs(int x,int y, int width, int height, QGraphicsItem *parent): QGraphicsRectItem(parent){

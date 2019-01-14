@@ -1,6 +1,6 @@
-#include "customize.h"
-#include "game.h"
-#include "meni.h"
+#include "headers/customize.h"
+#include "headers/game.h"
+#include "headers/meni.h"
 #include <QLabel>
 #include <QWidget>
 #include <QHBoxLayout>
@@ -23,7 +23,7 @@ Customize::Customize(QWidget * parent):QGraphicsScene(parent){
 
     // Background stuff -------------------------------------------------------------
     QGraphicsPixmapItem * background = new QGraphicsPixmapItem();
-    background->setPixmap(QPixmap(":/images/menuBackground.jpg"));
+    background->setPixmap(QPixmap(":/images/images/menuBackground.jpg"));
     background->setPos(0,0);
     addItem(background);
     // ------------------------------------------------------------------------------

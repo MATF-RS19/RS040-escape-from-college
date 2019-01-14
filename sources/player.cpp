@@ -1,13 +1,13 @@
-#include "player.h"
-#include "stairs.h"
-#include "wall.h"
-#include "door.h"
-#include "exampaper.h"
-#include "game.h"
-#include "score.h"
-#include "tips.h"
-#include "profesor.h"
-#include "meni.h"
+#include "headers/player.h"
+#include "headers/stairs.h"
+#include "headers/wall.h"
+#include "headers/door.h"
+#include "headers/exampaper.h"
+#include "headers/game.h"
+#include "headers/score.h"
+#include "headers/tips.h"
+#include "headers/profesor.h"
+#include "headers/meni.h"
 #include <QList>
 #include <QPointF>
 #include <stdlib.h>
@@ -23,9 +23,9 @@ Player::Player(QGraphicsItem *parent): QGraphicsPixmapItem(parent){
     gender = pocetak->gender;
     key = false;
     if( gender == true )
-        setPixmap(QPixmap(":/images/maleRight.png"));
+        setPixmap(QPixmap(":/images/images/maleRight.png"));
     else
-        setPixmap(QPixmap(":/images/femaleRight.png"));
+        setPixmap(QPixmap(":/images/images/femaleRight.png"));
     setPos(70, 405);
     setScale(1.3);
 
@@ -35,9 +35,9 @@ void Player::keyPressEvent(QKeyEvent *event){
 
     if( event->key() == Qt::Key_W ){
         if( gender == true )
-            setPixmap(QPixmap(":/images/maleUp.png"));
+            setPixmap(QPixmap(":/images/images/maleUp.png"));
         else
-            setPixmap(QPixmap(":/images/femaleUp.png"));
+            setPixmap(QPixmap(":/images/images/femaleUp.png"));
 
         setPos( x(), y() - 3 );
         if( collide() == 1 )
@@ -49,43 +49,49 @@ void Player::keyPressEvent(QKeyEvent *event){
     else if( event->key() == Qt::Key_S ){
 
         if( gender == true )
-            setPixmap(QPixmap(":/images/maleDown.png"));
+            setPixmap(QPixmap(":/images/images/maleDown.png"));
         else
-            setPixmap(QPixmap(":/images/femaleDown.png"));
+            setPixmap(QPixmap(":/images/images/femaleDown.png"));
 
         setPos( x(), y() + 3 );
         if( collide() == 1 )
             setPos( x(), y() - 3 );
         else
-            tips->setText("Everything here is made-up!");
+        tips->setText("Everything here is made-up!");
 
     }
     else if( event->key() == Qt::Key_A ){
 
         if( gender == true )
-            setPixmap(QPixmap(":/images/maleLeft.png"));
+            setPixmap(QPixmap(":/images/images/maleLeft.png"));
         else
-            setPixmap(QPixmap(":/images/femaleLeft.png"));
+            setPixmap(QPixmap(":/images/images/femaleLeft.png"));
 
         setPos( x() - 3, y() );
         if( collide() == 1 )
             setPos( x() + 3, y() );
         else
-            tips->setText("Everything here is made-up!");
+        tips->setText("Everything here is made-up!");
 
     }
     else if( event->key() == Qt::Key_D ){
 
         if( gender == true )
-            setPixmap(QPixmap(":/images/maleRight.png"));
+            setPixmap(QPixmap(":/images/images/maleRight.png"));
         else
-            setPixmap(QPixmap(":/images/femaleRight.png"));
+            setPixmap(QPixmap(":/images/images/femaleRight.png"));
 
         setPos( x() + 3, y() );
         if( collide() == 1 )
             setPos( x() - 3, y() );
+        else if( collide() == 4 ){
+            clearFocus();
+            game->level3->profesor1->setFlag(QGraphicsItem::ItemIsFocusable);
+            game->level3->profesor1->setFocus();
+            game->level3->profesor1->finishGame = true;
+        }
         else
-            tips->setText("Everything here is made-up!");
+        tips->setText("Everything here is made-up!");
     }
     else if( event->key() == Qt::Key_Space ){
         if( collide() == 3 ){
@@ -93,6 +99,9 @@ void Player::keyPressEvent(QKeyEvent *event){
             tips->setPlainText("Congrats!");
             game->changeLevel();
             }
+    }
+    else if( event->key() == Qt::Key_Escape ){
+        exit(0);
     }
 }// END OF keyPressEvent
 
@@ -107,6 +116,7 @@ void Player::setKey(bool k) { key = k; }
  * 1 -> Player collides with locked doors or walls
  * 2 -> Player collides with something passable
  * 3 -> Player collides with stairs to proceed
+ * 4 -> Finished the game
 */
 int Player::collide(){
 
@@ -122,12 +132,25 @@ int Player::collide(){
         // Player collide with stairs -----------------------------------------------
         else if (typeid(*(colliding_items[i])) == typeid(Stairs)){
 
-            if( ((Stairs*)colliding_items[i])->getWalk() == false ){
+            if( game->index == 1 && getKey() == false ){
+                tips->setPlainText("Collect the scripts first, remember?");
+                return 1;
+            }
+            if( game->index == 2 && ((Stairs*)colliding_items[i])->getWalk() == false ){
                 tips->setPlainText("That's dangerous!");
                 return 1;
             }
-            else
-                return 3;
+            if( game->index == 3 && ((Stairs*)colliding_items[i])->getWalk() == true ){
+                tips->setPlainText("You made it little thief! Press Esc");
+                return 4;
+            }
+            if( game->index == 3 && ((Stairs*)colliding_items[i])->getWalk() == false ){
+                tips->setPlainText("You made it this far, just 3 more!");
+                return 1;
+            }
+
+            return 3;
+
         }
         // --------------------------------------------------------------------------
 
@@ -147,75 +170,41 @@ int Player::collide(){
                 tips->setText("Doors seem to be locked");
                 return 1;
             }
+
         }
         // --------------------------------------------------------------------------
 
         // Player collide with exams ------------------------------------------------
         else if( typeid(*(colliding_items[i])) == typeid(ExamPaper) ){
-            switch( ((ExamPaper*)colliding_items[i])->getIndex() ){
-                case 1:
-                    if( game->index == 1 ){
-                        scene()->removeItem(game->level1->paper1);
-                        delete game->level1->paper1;
-                        break;
-                    }
-                    else if( game->index == 2 ){
-                        scene()->removeItem(game->level2->paper1);
-                        delete game->level2->paper1;
-                        break;
-                    }
-                    /*
-                    else{
-                        scene()->removeItem(game->level3->paper1);
-                        delete game->level3->paper1;
-                        break;
-                    }
-                    */
-                case 2:
-                    if( game->index == 1 ){
-                        scene()->removeItem(game->level1->paper2);
-                        delete game->level1->paper2;
-                        break;
-                    }
-                    else if( game->index == 2 ){
-                        scene()->removeItem(game->level2->paper2);
-                        delete game->level2->paper2;
-                        break;
-                    }
-                    /*
-                    else{
-                        scene()->removeItem(game->level3->paper2);
-                        delete game->level3->paper2;
-                        break;
-                    }
-                    */
-                case 3:
-                    if( game->index == 1 ){
-                        scene()->removeItem(game->level1->paper3);
-                        delete game->level1->paper3;
-                        game->level1->stairs->setWalk(true);
-                        break;
-                    }
-                    else if( game->index == 2 ){
-                        scene()->removeItem(game->level2->paper3);
-                        delete game->level2->paper3;
-                        break;
-                    }
-                    /*
-                    else{
-                        scene()->removeItem(game->level3->paper3);
-                        delete game->level3->paper3;
-                        break;
-                    }
-                    */
-            }// END OF switch
+
+            if( ((ExamPaper*)colliding_items[i])->getIndex() == 3 &&
+                game->index == 1 )
+                    game->level1->stairs->setWalk(true);
+
+            scene()->removeItem(colliding_items[i]);
+            delete colliding_items[i];
             score->incrementScore();
             if( score->getScore() == 3 )
                 setKey(true);
+
         }
         // --------------------------------------------------------------------------
+
     }// END OF for
 
     return 2;
 
 }// END OF collide
+
+
+
+
+
+
+
+
+
+
+
+
+

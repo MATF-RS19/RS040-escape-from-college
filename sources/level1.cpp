@@ -1,9 +1,9 @@
-#include "level1.h"
-#include "player.h"
-#include "tips.h"
-#include "score.h"
-#include "game.h"
-#include "meni.h"
+#include "headers/level1.h"
+#include "headers/player.h"
+#include "headers/tips.h"
+#include "headers/score.h"
+#include "headers/game.h"
+#include "headers/meni.h"
 #include <QDebug>
 
 extern Player * player;
@@ -17,7 +17,7 @@ Level1::Level1(){
 
     // Placing background picture ----------------------------------------------------
     background = new QGraphicsPixmapItem();
-    background->setPixmap(QPixmap(":/images/1st.jpg"));
+    background->setPixmap(QPixmap(":/images/images/1st.jpg"));
     background->setPos(0,0);
     addItem(background);
     // -------------------------------------------------------------------------------
@@ -102,7 +102,7 @@ Level1::Level1(){
     qDebug() << "Level1 : scripts set!";
 
     // Profesor stuff ---------------------------------------------------------------
-    profesor1 = new Profesor("mrsav", "", 113,160, 113,420);
+    profesor1 = new Profesor("mrsav", "", 108,160, 108,420);
     profesor2 = new Profesor("debeo", "", 537,130, 537,340);
 
     profesor1->setName(pocetak->name1);
@@ -153,6 +153,8 @@ void Level1::clearScene(){
     removeItem(door9);      delete door9;
     removeItem(door10);     delete door10;
     removeItem(stairs);     delete stairs;
+    removeItem(profesor1);  delete profesor1;
+    removeItem(profesor2);  delete profesor2;
     removeItem(tips);       delete tips;
     removeItem(score);      delete score;
     removeItem(player);     delete player;

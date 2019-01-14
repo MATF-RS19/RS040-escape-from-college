@@ -1,6 +1,6 @@
 #include <QApplication>
-#include "game.h"
-#include "meni.h"
+#include "headers/game.h"
+#include "headers/meni.h"
 
 Game * game;
 Meni * pocetak;

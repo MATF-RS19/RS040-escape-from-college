@@ -13,7 +13,7 @@ public:
     Profesor(QString debljina,QString ime_prezime,int iks,int ip,int iks1,int ip1, QGraphicsItem * parent = 0);
     void keyPressEvent(QKeyEvent * event);
     void setName(QString name);
-    //void setPicture(); // sets the picture of profesor
+    bool finishGame; // Player sends a signal through finishGame
 
 public slots:
     void move();

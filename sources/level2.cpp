@@ -1,9 +1,9 @@
-#include "level2.h"
-#include "game.h"
-#include "player.h"
-#include "tips.h"
-#include "meni.h"
-#include "score.h"
+#include "headers/level2.h"
+#include "headers/game.h"
+#include "headers/player.h"
+#include "headers/tips.h"
+#include "headers/meni.h"
+#include "headers/score.h"
 #include "QDebug"
 
 extern Player * player;
@@ -17,8 +17,8 @@ Level2::Level2(){
     setSceneRect(0, 0, 800, 600);
 
     // Placing background picture ----------------------------------------------------
-    QGraphicsPixmapItem * background = new QGraphicsPixmapItem();
-    background->setPixmap(QPixmap(":/images/2nd.jpg"));
+    background = new QGraphicsPixmapItem();
+    background->setPixmap(QPixmap(":/images/images/2nd.jpg"));
     background->setPos(0,0);
     addItem(background);
     // -------------------------------------------------------------------------------
@@ -64,6 +64,10 @@ Level2::Level2(){
     wall5 = new Wall(points);
     addItem(wall5);
     points.clear();
+
+    points << QPoint(0, 370) << QPoint(1, 370) << QPoint(1, 416) << QPoint(0, 416);
+    Wall *wall6 = new Wall(points);
+    addItem(wall6);
     // ------------------------------------------------------------------------------
 
     // Placing the doors ------------------------------------------------------------
@@ -142,4 +146,33 @@ Door *Level2::createDoors(qreal x, qreal y, qreal w, qreal h, bool lock){
     temp->setLock(lock);
     addItem(temp);
     return temp;
-}// END OF constructor
+}
+
+void Level2::clearScene(){
+    removeItem(background); delete background;
+    removeItem(wall1);      delete wall1;
+    removeItem(wall2);      delete wall2;
+    removeItem(wall3);      delete wall3;
+    removeItem(wall4);      delete wall4;
+    removeItem(wall5);      delete wall5;
+    removeItem(door1);      delete door1;
+    removeItem(door2);      delete door2;
+    removeItem(door3);      delete door3;
+    removeItem(door4);      delete door4;
+    removeItem(door5);      delete door5;
+    removeItem(door6);      delete door6;
+    removeItem(door7);      delete door7;
+    removeItem(door8);      delete door8;
+    removeItem(door9);      delete door9;
+    removeItem(door10);     delete door10;
+    removeItem(door11);     delete door11;
+    removeItem(door12);     delete door12;
+    removeItem(stairs1);    delete stairs1;
+    removeItem(stairs2);    delete stairs2;
+    removeItem(profesor1);  delete profesor1;
+    removeItem(profesor2);  delete profesor2;
+    removeItem(tips);       delete tips;
+    removeItem(score);      delete score;
+    removeItem(player);     delete player;
+
+}

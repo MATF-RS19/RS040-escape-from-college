@@ -1,8 +1,8 @@
-#include "exampaper.h"
+#include "headers/exampaper.h"
 
 ExamPaper::ExamPaper(int x, int y, int _index, QGraphicsItem *parent): QGraphicsPixmapItem(parent){
     setIndex(_index);
-    setPixmap(QPixmap(":/images/script.png"));
+    setPixmap(QPixmap(":/images/images/script.png"));
     setPos(x,y);
 
 }// END OF constructor

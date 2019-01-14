@@ -1,9 +1,9 @@
-#include "game.h"
+#include "headers/game.h"
 #include <QGraphicsPixmapItem>
 #include <QDebug>
-#include "player.h"
-#include "tips.h"
-#include "score.h"
+#include "headers/player.h"
+#include "headers/tips.h"
+#include "headers/score.h"
 
 Tips *tips;
 Score *score;
@@ -46,20 +46,19 @@ void Game::changeLevel(){
             setScene(level1);
             break;
         case 2:
-            qDebug() << "started changeLevel()";
             level1->clearScene();
-            qDebug() << "level 1 cleared";
             level2 = new Level2();
             qDebug() << "level 2 initialized";
             setScene(level2);
             qDebug() << "We set level2";
             break;
-            /*
+
         case 3:
-            level3 = new Level3;
+            level2->clearScene();
+            level3 = new Level3();
             setScene(level3);
             break;
-            */
+
     }
 }
 
